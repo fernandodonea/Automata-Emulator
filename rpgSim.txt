@@ -1,0 +1,57 @@
+#states
+
+[start]
+entrance hallway kitchen secretRoom library exit
+[end]
+
+#alphabet
+
+[start]
+up down left right
+[end]
+
+#transitions
+[start]
+entrance down entrance
+entrance up hallway
+entrance left entrance
+entrance right entrance
+
+hallway up secretRoom
+hallway down entrance
+hallway left kitchen
+hallway right library
+
+kitchen up kitchen
+kitchen down kitchen
+kitchen left hallway
+kitchen right kitchen
+
+secretRoom up secretRoom
+secretRoom down hallway
+secretRoom left secretRoom
+secretRoom right secretRoom
+
+library up library
+library down exit
+library left hallway
+library right library
+
+exit up exit
+exit down exit
+exit left exit
+exit right exit
+
+
+
+[end]
+
+#initial state
+[start]
+entrance
+[end]
+
+#accepting states
+[start]
+exit
+[end]

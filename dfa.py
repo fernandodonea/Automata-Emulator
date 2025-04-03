@@ -89,25 +89,29 @@ def load_dfa(fn):
         print("Error: Invalid DFA")
     else:
         dfa = {"states": states, "alphabet": alphabet, "delta": delta, "start": start, "final_states": final_states}
+        print(dfa)
         return dfa
 
 def run_dfa(dfa, string):
+    string=string.split()
     current_state = dfa["start"]
     for letter in string:
         found = False
         for transition in dfa["delta"]:
             if transition[0] == current_state and transition[1] == letter:
+                print(f"Transition: {transition[0]} --{letter}--> {transition[2]}")
                 current_state = transition[2]
-                print(f"Transition: {current_state} --{letter}--> {transition[2]}")
                 found = True
                 break
         if not found:
             print(f"Error: No transition found for state {current_state} with letter {letter}")
 
     if current_state in dfa["final_states"]:
-        print(f"String accepted. Final state: {current_state}")
+        print(f"Final state: {current_state}")
+        print("String accepted.")
     else:
-        print(f"String rejected. Final state: {current_state}")
+        print(f"Final state: {current_state}")
+        print("String rejected.")
 
 
 

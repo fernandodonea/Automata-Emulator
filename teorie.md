@@ -1,17 +1,15 @@
 
 # Deterministic finite automaton Emulator
 
-Sa se scrie o functie care primeste ca parametru un DFA si un cuvant si verifica daca acel cuvant este acceptat de automat.
-
-Exemplu de DFA:
+DFA example
 ```
-Q={q1,q1,...,qn} //stare 
+Q={q1,q1,...,qn} //state
 ```
 ```
-sigma={0,1} //alfabetul
+sigma={0,1} //alphabet
 ```
 ```
-delta: Q x sigma -> Q //functia de tranzitie
+delta: Q x sigma -> Q //transition function
 
 q0,0,q1
 q0,1,q1
@@ -19,13 +17,13 @@ q1,0,q1
 q1,1,q0
 ```
 ```
-start=q0 //starea de start
+start=q0 //start state
 ```
 ```
-F={q1} //starile finale
+F={q1} //final state
 ```
 
-Recomandare de input pentru fisier -> **sectiuni**
+Input file for dfa -> **sections**
 ```txt
 #states
 
