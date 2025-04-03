@@ -1,0 +1,29 @@
+#states
+
+[start]
+q0 q1
+[end]
+
+#alphabet
+
+[start]
+0 1
+[end]
+
+#transitions
+[start]
+q0 0 q0
+q0 1 q1
+q1 0 q0
+q1 1 q1
+[end]
+
+#initial state
+[start]
+q0
+[end]
+
+#accepting states
+[start]
+q1
+[end]
