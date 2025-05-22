@@ -1,26 +1,26 @@
-# DFA-Emulator
+# DFA and NFA Emulator
 
-
-This project provides a Python-based implementation for validating and simulating Deterministic Finite Automata (DFA). 
-It includes functions to verify the correctness of a DFA definition, load a DFA from a file, and simulate the DFA with a given input string.
+This project provides a Python-based implementation for validating and simulating both Deterministic Finite Automata (DFA) and Nondeterministic Finite Automata (NFA). It includes functions to verify automaton definitions, load them from files, and simulate them with input strings.
 
 ## Features
-- **DFA Validation**: Ensures the DFA definition (states, alphabet, transitions, start state, and final states) is valid.
-- **DFA Loading**: Reads DFA definitions from a file.
-- **DFA Simulation**: Simulates the DFA with a given input string and determines if the string is accepted or rejected.
+
+- **DFA & NFA Validation**: Ensures the automaton definition (states, alphabet, transitions, start state, and final states) is valid.
+- **DFA & NFA Loading**: Reads automaton definitions from a file.
+- **DFA & NFA Simulation**: Simulates the automaton with a given input string and determines if the string is accepted or rejected.
+- **Epsilon Transitions**: Supports `eps` (epsilon) transitions for NFAs.
 
 ## Project Structure
-- [dfa.py](dfa.py): Contains the `DFA` class and methods for validation, loading, and simulating the DFA.
-- [main.py](main.py): The main script that runs the program and interacts with the user.
 
-- [template.txt](template.txt): Template for the DFA definition file.
+- `dfa.py`: Contains the DFA class and methods for validation, loading, and simulation.
+- `nfa.py`: Contains the NFA class and methods for validation, loading, and simulation.
+- `main.py`: Main script that runs the program and interacts with the user.
+- `template.txt`: Template for DFA/NFA definition files.
+- `examples/dfa.txt`: Example DFA definition file.
+- `examples/nfa.txt`: Example NFA definition file.
 
-- [resources/dfa.txt](examples/dfa.txt): Example DFA definition file.
-- [resources/rpgSim.txt](examples/rpgSim.txt): Example DFA definition file.
+## Automaton Definition Format
 
-## DFA Definition Format
-The DFA definition file should be structured as follows using sections:
-
+The definition file for both DFA and NFA should be structured as follows:
 
 ```
 #states
