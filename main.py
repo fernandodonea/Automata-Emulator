@@ -1,7 +1,9 @@
+
 import dfa
 import nfa
+import pda
 
-choice = input("Select automaton type (dfa/nfa): ").strip().lower()
+choice = input("Select automaton type (dfa/nfa/pda): ").strip().lower()
 
 if choice == "dfa":
     fn = input("Enter DFA's file name: ")
@@ -21,5 +23,18 @@ elif choice == "nfa":
         print("NFA loaded successfully")
         string = input("Enter a string: ")
         nfa.run_nfa(n, string)
+elif choice == "pda":
+    fn = input("Enter PDA's file name: ")
+    p = pda.load_pda(fn)
+    if not p:
+        print("Invalid PDA")
+    else:
+        print("PDA loaded successfully")
+        string = input("Enter a string: ")
+        accepted = pda.simulate_pda(p, string)
+        if accepted:
+            print("Input accepted by the PDA.")
+        else:
+            print("Input rejected by the PDA.")
 else:
-    print("Invalid choice. Please enter 'dfa' or 'nfa'.")
+    print("Invalid choice. Please enter 'dfa', 'nfa', or 'pda'.")
