@@ -11,17 +11,17 @@ This project provides a Python-based implementation for validating and simulatin
 
 ## Project Structure
 
-- `dfa.py`: Contains the DFA class and methods for validation, loading, and simulation.
-- `nfa.py`: Contains the NFA class and methods for validation, loading, and simulation.
-- `pda.py`: Contains the PDA class and methods for validation, loading, and simulation.
-- `main.py`: Main script that runs the program and interacts with the user.
+- [dfa.py](dfa.py): Contains the DFA class and methods for validation, loading, and simulation.
+- [nfa.py](dfa.py): Contains the NFA class and methods for validation, loading, and simulation.
+- [pda.py](pda.py): Contains the PDA class and methods for validation, loading, and simulation.
+- [main.py](main.py): Main script that runs the program and interacts with the user.
 
-- `template_dfa_nfa.txt`: Template for DFA/NFA definition files.
-- `template_pda.txt`: Template for PDA definition files.
-- `examples/dfa.txt`: Example DFA definition file.
-- `examples/nfa.txt`: Example NFA definition file.
-- `examples/pda.txt`: Example PDA definition file.
-- `examples/rpgSim.txt`: Example for an RPG simulator for DFA.
+- [template_dfa_nfa.txt](template_dfa_nfa.txt): Template for DFA/NFA definition files.
+- [template_pda.txt](template_pda.txt): Template for PDA definition files.
+- [examples/dfa.txt](examples/dfa.txt): Example DFA definition file.
+- [examples/nfa.txt](examples/nfa.txt): Example NFA definition file.
+- [examples/pda.txt](examples/pda.txt): Example PDA definition file.
+- [examples/rpgSim.txt](examples/rpgSim.txt): Example for an RPG simulator for DFA.
 
 ## Automaton Definition Format
 
