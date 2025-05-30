@@ -81,7 +81,7 @@ Acest DFA simulează un joc de tip RPG, unde jucătorul se plimba pe harta.
 Acest TM adună două numere în format unary.
 
 Format de intrare:
-primul_nr**$**al_doilea_nr@spațiu_rezultat
+primul_nr$al_doilea_nr@spațiu_rezultat
 
 #### Exemplu:
 Input:
