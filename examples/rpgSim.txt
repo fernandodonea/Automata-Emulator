@@ -24,8 +24,8 @@ hallway right library
 
 kitchen up kitchen
 kitchen down kitchen
-kitchen left hallway
-kitchen right kitchen
+kitchen right hallway
+kitchen left kitchen
 
 secretRoom up secretRoom
 secretRoom down hallway
