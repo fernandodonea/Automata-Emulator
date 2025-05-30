@@ -1,0 +1,29 @@
+#states
+[start]
+
+[end]
+
+#input alphabet
+[start]
+
+[end]
+
+#tape alphabet
+[start]
+
+[end]
+
+#transitions (delta)
+[start]
+
+[end]
+
+#initial state (start)
+[start]
+
+[end]
+
+#accepting states
+[start]
+
+[end]
