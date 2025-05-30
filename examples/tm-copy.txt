@@ -1,0 +1,113 @@
+# Masina Turing care copiază un șir de la începutul benzii
+undeva pe bandă pe un segment delimitat de @
+
+[start]
+q0
+q_marked_0
+q_marked_1
+q_seek_at_0
+q_seek_at_1
+q_find_space_0
+q_find_space_1
+q_return_0
+q_return_1
+q_cleanup
+q_accept
+[end]
+[start]
+0
+1
+$
+@
+_
+[end]
+[start]
+0
+1
+$
+@
+X
+Y
+_
+[end]
+[start]
+# Găsește primul simbol nemarchat și decide ce să copieze
+q0 0 q_marked_0 X R
+q0 1 q_marked_1 Y R
+q0 X q0 X R
+q0 Y q0 Y R
+q0 $ q_cleanup $ R
+
+# Pentru simbolul 0 marcat cu X: mergi la primul @ și scrie 0
+q_marked_0 0 q_marked_0 0 R
+q_marked_0 1 q_marked_0 1 R
+q_marked_0 X q_marked_0 X R
+q_marked_0 Y q_marked_0 Y R
+q_marked_0 _ q_marked_0 _ R
+q_marked_0 $ q_seek_at_0 $ R
+
+# Pentru simbolul 1 marcat cu Y: mergi la primul @ și scrie 1
+q_marked_1 0 q_marked_1 0 R
+q_marked_1 1 q_marked_1 1 R
+q_marked_1 X q_marked_1 X R
+q_marked_1 Y q_marked_1 Y R
+q_marked_1 _ q_marked_1 _ R
+q_marked_1 $ q_seek_at_1 $ R
+
+# Caută @ pentru scrierea lui 0
+q_seek_at_0 0 q_seek_at_0 0 R
+q_seek_at_0 1 q_seek_at_0 1 R
+q_seek_at_0 _ q_seek_at_0 _ R
+q_seek_at_0 @ q_find_space_0 @ R
+
+# Caută @ pentru scrierea lui 1
+q_seek_at_1 0 q_seek_at_1 0 R
+q_seek_at_1 1 q_seek_at_1 1 R
+q_seek_at_1 _ q_seek_at_1 _ R
+q_seek_at_1 @ q_find_space_1 @ R
+
+# Găsește primul loc liber și scrie 0
+q_find_space_0 0 q_find_space_0 0 R
+q_find_space_0 1 q_find_space_0 1 R
+q_find_space_0 _ q_return_0 0 L
+q_find_space_0 @ q_cleanup @ L
+
+# Găsește primul loc liber și scrie 1
+q_find_space_1 0 q_find_space_1 0 R
+q_find_space_1 1 q_find_space_1 1 R
+q_find_space_1 _ q_return_1 1 L
+q_find_space_1 @ q_cleanup @ L
+
+# Revine la început după scrierea lui 0
+q_return_0 0 q_return_0 0 L
+q_return_0 1 q_return_0 1 L
+q_return_0 @ q_return_0 @ L
+q_return_0 $ q_return_0 $ L
+q_return_0 _ q_return_0 _ L
+q_return_0 X q0 X R
+q_return_0 Y q0 Y R
+
+# Revine la început după scrierea lui 1
+q_return_1 0 q_return_1 0 L
+q_return_1 1 q_return_1 1 L
+q_return_1 @ q_return_1 @ L
+q_return_1 $ q_return_1 $ L
+q_return_1 _ q_return_1 _ L
+q_return_1 X q0 X R
+q_return_1 Y q0 Y R
+
+# Curăță toate marcajele X și Y înapoi la simbolurile originale
+q_cleanup X q_cleanup 0 R
+q_cleanup Y q_cleanup 1 R
+q_cleanup 0 q_cleanup 0 R
+q_cleanup 1 q_cleanup 1 R
+q_cleanup _ q_cleanup _ R
+q_cleanup $ q_cleanup $ R
+q_cleanup @ q_accept @ R
+[end]
+[start]
+q0
+[end]
+[start]
+q_accept
+[end]
