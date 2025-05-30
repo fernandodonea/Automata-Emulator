@@ -1,16 +1,20 @@
-from automata_utils import verify_automaton, load_automaton
+from include.load_functions import load_finite_automata
+from include.verify_functions import verify_finite_automata
 
 def verify_dfa(states, alphabet, delta, start, final_states):
-    return verify_automaton(states, alphabet, delta, start, final_states, allow_epsilon=False)
+    return verify_finite_automata(states, alphabet, delta, start, final_states, allow_epsilon=False)
+
 
 def load_dfa(fn):
-    return load_automaton(fn, verify_dfa)
+    return load_finite_automata(fn, verify_dfa)
 
 
-def run_dfa(dfa, string):
-    string=string.split()
+def run_dfa(dfa, input_string):
+    if ' ' in input_string:
+        input_string=input_string.split()
+    print(input_string)
     current_state = dfa["start"]
-    for letter in string:
+    for letter in input_string:
         found = False
         for transition in dfa["delta"]:
             if transition[0] == current_state and transition[1] == letter:

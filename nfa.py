@@ -1,10 +1,12 @@
-from automata_utils import verify_automaton, load_automaton
+from include.load_functions import load_finite_automata
+from include.verify_functions import verify_finite_automata
+
 
 def verify_nfa(states, alphabet, delta, start, final_states):
-    return verify_automaton(states, alphabet, delta, start, final_states, allow_epsilon=True)
+    return verify_finite_automata(states, alphabet, delta, start, final_states, allow_epsilon=True)
 
 def load_nfa(fn):
-    return load_automaton(fn, verify_nfa)
+    return load_finite_automata(fn, verify_nfa)
 
 
 def epsilon_closure(states, delta):
@@ -19,12 +21,13 @@ def epsilon_closure(states, delta):
     return closure
 
 
-def run_nfa(nfa, string):
-    string = string.split()
+def run_nfa(nfa, input_string):
+    if ' ' in input_string:
+        input_string = input_string.split()
     current_states = epsilon_closure([nfa["start"]], nfa["delta"])
     print(f"Initial states: {current_states}")
 
-    for letter in string:
+    for letter in input_string:
         next_states = set()
         for state in current_states:
             for t in nfa["delta"]:
