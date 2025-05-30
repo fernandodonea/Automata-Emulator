@@ -117,3 +117,62 @@ def load_pushdown_automata(fn, verify_function):
     except IOError as e:
         print(f"Error reading file '{fn}': {e}")
         return None
+
+
+def load_turing_machine(fn, verify_function):
+    try:
+        with open(fn, 'r') as fin:
+            states = []
+            input_alphabet = []
+            tape_alphabet = []
+            delta = []
+            start = ""
+            final_states = []
+
+            lines = fin.readlines()
+            section = -1
+
+            for line in lines:
+                #Remove comments
+                line = line.split('#')[0].strip()
+                if line:
+                    if line == "[start]":
+                        section += 1
+                    elif line == "[end]":
+                        continue
+                    else:
+                        if section == 0:
+                            states.append(line)
+                        elif section == 1:
+                            input_alphabet.append(line)
+                        elif section == 2:
+                            tape_alphabet.append(line)
+                        elif section == 3:
+                            delta.append(line.split())
+                        elif section == 4:
+                            start = line
+                        elif section == 5:
+                            final_states.append(line)
+
+            if not verify_function(states, input_alphabet, tape_alphabet, delta, start, final_states):
+                print("Error: Invalid Turing Machine")
+                return None
+            else:
+                tm = {
+                    "states": states,
+                    "input_alphabet": input_alphabet,
+                    "tape_alphabet": tape_alphabet,
+                    "delta": delta,
+                    "start": start,
+                    "final_states": final_states
+                }
+                for i in tm:
+                    print(f"{i}: {tm[i]}")
+                return tm
+
+    except FileNotFoundError:
+        print(f"Error: File '{fn}' not found.")
+        return None
+    except IOError as e:
+        print(f"Error reading file '{fn}': {e}")
+        return None

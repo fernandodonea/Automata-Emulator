@@ -1,0 +1,23 @@
+[start]
+q0
+q1
+[end]
+[start]
+1
+[end]
+[start]
+1
+_
+[end]
+[start]
+q0 1 q1 1 R
+q1 1 q0 1 R
+q0 _ q0 _ R
+q1 _ q1 _ R
+[end]
+[start]
+q0
+[end]
+[start]
+q0
+[end]

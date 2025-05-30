@@ -3,12 +3,13 @@
 import dfa
 import nfa
 import pda
+import tm
 
 def prompt_automaton_file(automaton_type):
     return input(f"Enter {automaton_type.upper()}'s definition file name: ").strip()
 
 def prompt_input_string(automaton_type):
-    return input(f"Enter an input string: ").strip()
+    return input(f"Enter an input string for {automaton_type}: ").strip()
 
 def run_dfa_simulation():
     while True:
@@ -92,11 +93,41 @@ def run_pda_simulation():
                     print("Invalid choice, going back to main menu.\n")
                     return
 
+def run_tm_simulation():
+    while True:
+        fn = prompt_automaton_file("tm")
+        automaton = tm.load_tm(fn)
+        if not automaton:
+            print("Invalid Turing Machine\n")
+            retry = input("Try another file? (y/n): ").strip().lower()
+            if retry != 'y':
+                return
+        else:
+            print("Turing Machine loaded successfully")
+            while True:
+                string = prompt_input_string("tm")
+                accepted = tm.run_tm(automaton, string)
+                if accepted:
+                    print("Input accepted by the Turing Machine.")
+                else:
+                    print("Input rejected by the Turing Machine.\n")
+                choice = input("Enter another string? (y), Go back to main menu? (b), or Quit? (q): ").strip().lower()
+                if choice == 'y':
+                    continue
+                elif choice == 'b':
+                    return
+                elif choice == 'q':
+                    print("Goodbye!")
+                    exit(0)
+                else:
+                    print("Invalid choice, going back to main menu.\n")
+                    return
+
 def main():
     print("\n=== Automata Simulator ===\n")
     while True:
         try:
-            choice = input("Select automaton type (dfa/nfa/pda) or type 'quit' to exit: ").strip().lower()
+            choice = input("Select automaton type (dfa/nfa/pda/tm) or type 'quit' to exit: ").strip().lower()
             if choice in ("quit", "exit", "q"):
                 print("Goodbye!")
                 break
@@ -106,8 +137,10 @@ def main():
                 run_nfa_simulation()
             elif choice == "pda":
                 run_pda_simulation()
+            elif choice == "tm":
+                run_tm_simulation()
             else:
-                print("Invalid choice. Please enter 'dfa', 'nfa', 'pda', or 'quit'.\n")
+                print("Invalid choice. Please enter 'dfa', 'nfa', 'pda', 'tm', or 'quit'.\n")
         except (KeyboardInterrupt, EOFError):
             print("\nExiting. Goodbye!")
             break
