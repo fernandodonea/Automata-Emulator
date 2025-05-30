@@ -1,0 +1,102 @@
+#   Machina Turring care verifica daca un sir
+# format din 'a' si 'b' este palindrom
+
+[start]
+q0
+q_remember_a
+q_remember_b
+q_seek_end
+q_find_a_at_end
+q_find_b_at_end
+q_verify_match
+q_back_to_start
+q_accept
+q_reject
+[end]
+[start]
+a
+b
+_
+[end]
+[start]
+a
+b
+X
+Y
+_
+[end]
+[start]
+# Starea inițială - memorează primul caracter
+q0 a q_remember_a X R
+q0 b q_remember_b Y R
+q0 X q0 X R
+q0 Y q0 Y R
+q0 _ q_accept _ R
+
+# Am memorat 'a' - trebuie să găsesc 'a' la sfârșit
+q_remember_a a q_remember_a a R
+q_remember_a b q_remember_a b R
+q_remember_a X q_remember_a X R
+q_remember_a Y q_remember_a Y R
+q_remember_a _ q_seek_end _ L
+
+# Am memorat 'b' - trebuie să găsesc 'b' la sfârșit
+q_remember_b a q_remember_b a R
+q_remember_b b q_remember_b b R
+q_remember_b X q_remember_b X R
+q_remember_b Y q_remember_b Y R
+q_remember_b _ q_seek_end _ L
+
+# Caută ultimul caracter nemarchat
+q_seek_end X q_seek_end X L
+q_seek_end Y q_seek_end Y L
+q_seek_end a q_find_a_at_end X L
+q_seek_end b q_find_b_at_end Y L
+q_seek_end _ q_accept _ R
+
+# Găsit 'a' la sfârșit - verific dacă primul a fost 'a'
+q_find_a_at_end a q_find_a_at_end a L
+q_find_a_at_end b q_find_a_at_end b L
+q_find_a_at_end X q_verify_match X L
+q_find_a_at_end Y q_reject Y L
+
+# Găsit 'b' la sfârșit - verific dacă primul a fost 'b'
+q_find_b_at_end a q_find_b_at_end a L
+q_find_b_at_end b q_find_b_at_end b L
+q_find_b_at_end Y q_verify_match Y L
+q_find_b_at_end X q_reject X L
+
+# Match găsit - revine la început
+q_verify_match a q_back_to_start a L
+q_verify_match b q_back_to_start b L
+q_verify_match X q_back_to_start X L
+q_verify_match Y q_back_to_start Y L
+q_verify_match _ q0 _ R
+
+# Înapoi la început
+q_back_to_start a q_back_to_start a L
+q_back_to_start b q_back_to_start b L
+q_back_to_start X q_back_to_start X L
+q_back_to_start Y q_back_to_start Y L
+q_back_to_start _ q0 _ R
+
+# Palindrom valid
+q_accept a q_accept a R
+q_accept b q_accept b R
+q_accept X q_accept X R
+q_accept Y q_accept Y R
+q_accept _ q_accept _ R
+
+# Nu e palindrom
+q_reject a q_reject a R
+q_reject b q_reject b R
+q_reject X q_reject X R
+q_reject Y q_reject Y R
+q_reject _ q_reject _ R
+[end]
+[start]
+q0
+[end]
+[start]
+q_accept
+[end]

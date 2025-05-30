@@ -1,0 +1,89 @@
+# Machine Turring care aduna doua numere in unary
+
+# input:
+# primul_nr$al_doilea_nr@spațiu_rezulta
+
+
+[start]
+q_start
+q_mark_first
+q_to_at_first
+q_write_first
+q_back_first
+q_process_second
+q_mark_second
+q_to_at_second
+q_write_second
+q_back_second
+q_accept
+[end]
+[start]
+1
+$
+@
+_
+[end]
+[start]
+1
+$
+@
+X
+Y
+_
+[end]
+[start]
+# Procesează primul număr (înainte de $)
+q_start 1 q_mark_first X R
+q_start X q_start X R
+q_start $ q_process_second $ R
+
+# Marchează primul 1 și mergi la @
+q_mark_first 1 q_mark_first 1 R
+q_mark_first X q_mark_first X R
+q_mark_first $ q_to_at_first $ R
+
+# Mergi la @ pentru primul număr
+q_to_at_first 1 q_to_at_first 1 R
+q_to_at_first Y q_to_at_first Y R
+q_to_at_first @ q_write_first @ R
+
+# Scrie 1 pentru primul număr
+q_write_first 1 q_write_first 1 R
+q_write_first _ q_back_first 1 L
+
+# Revine pentru următorul 1 din primul număr
+q_back_first 1 q_back_first 1 L
+q_back_first @ q_back_first @ L
+q_back_first $ q_back_first $ L
+q_back_first Y q_back_first Y L
+q_back_first X q_start X R
+
+# Procesează al doilea număr (după $)
+q_process_second 1 q_mark_second Y R
+q_process_second Y q_process_second Y R
+q_process_second @ q_accept @ R
+
+# Marchează primul 1 din al doilea număr
+q_mark_second 1 q_mark_second 1 R
+q_mark_second Y q_mark_second Y R
+q_mark_second @ q_to_at_second @ R
+
+# Mergi la @ pentru al doilea număr
+q_to_at_second 1 q_to_at_second 1 R
+q_to_at_second _ q_write_second 1 L
+
+# Scrie 1 pentru al doilea număr
+q_write_second 1 q_back_second 1 L
+
+# Revine pentru următorul 1 din al doilea număr
+q_back_second 1 q_back_second 1 L
+q_back_second @ q_back_second @ L
+q_back_second $ q_back_second $ L
+q_back_second Y q_process_second Y R
+[end]
+[start]
+q_start
+[end]
+[start]
+q_accept
+[end]
