@@ -58,7 +58,7 @@ python3 main.py
 ```
 ---
 
-### Deterministic Finite Automata 
+## Deterministic Finite Automata 
 ### DFA - RPG Simulator
 Acest DFA simulează un joc de tip RPG, unde jucătorul se plimba pe harta.
 
